@@ -1,0 +1,99 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Card with Images</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(5, 5, 16, 0.956);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #1e1e2f;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3f51b5;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #303f9f;
+        }
+
+        .content {
+            display: none; /* Initially hide all content */
+        }
+        
+        .active {
+            display: block; /* Show active content */
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <h2>My Project Interfaces</h2>
+        <div id="content-0" class="content active">
+            <p>Click the button to see the first interface.</p>
+        </div>
+        <div id="content-1" class="content">
+            <img src="https://via.placeholder.com/250" alt="Interface One" />
+            <p>Interface One: Description of interface one goes here.</p>
+        </div>
+        <div id="content-2" class="content">
+            <img src="https://via.placeholder.com/250" alt="Interface two" />
+            <p>Interface two: Description of interface one goes here.</p>
+        </div>
+        <!-- You can add more content divs here for additional interfaces -->
+        <button onclick="showNextContent()" id="nextButton">Next</button>
+    </div>
+
+    <script>
+        let currentContentIndex = 0;
+        let buttonClicked = false;
+
+        function showNextContent() {
+            // Change button text to "next1" the first time it is clicked
+            if (!buttonClicked) {
+                document.getElementById("nextButton").textContent = "next1";
+                buttonClicked = true;
+            }
+
+            // Hide current content
+            document.getElementById(`content-${currentContentIndex}`).classList.remove('active');
+
+            // Increment index and check bounds
+            currentContentIndex++;
+            if (currentContentIndex > 2) { // Update based on how many content divs you have
+                currentContentIndex = 0; // Reset if it exceeds the number of contents
+            }
+
+            // Show next content
+            document.getElementById(`content-${currentContentIndex}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
