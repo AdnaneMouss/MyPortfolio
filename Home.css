@@ -4,7 +4,9 @@
 :root{
     --primary-color: rgb(109, 229, 193);
 }
-
+html{
+    scroll-behavior: smooth;
+}
 @media (min-width: 768px) {
   }
   
@@ -20,46 +22,75 @@ body{
     background: rgba(5, 5, 16, 0.956);
 }
 
-a{
+/* General link styling */
+a {
     color: white;
     text-decoration: none;
 }
 
-.navbar{
+/* Navbar container */
+.navbar {
     list-style-type: none;
     display: flex;
     margin-left: 100px;
-    position: fixed;
-    
-    }
-
-.header{
-    border-bottom: 2px solid cyan; /* Stylish line */
-    box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
-    backdrop-filter: blur;
+    position: fixed; /* Fixes the navbar to the viewport */
+    top: 0; /* Sticks to the top */
+    z-index: 1000; /* Ensures it's on top of other elements */
 }
 
+/* Header styling */
+.header {
+    border-bottom: 2px solid cyan; /* Stylish line */
+    box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Adds a glassy blur effect */
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
+    width: 100%; /* Ensure it spans the entire width */
+    position: fixed; /* Keeps the header fixed */
+    top: 0; /* Aligns to the top of the page */
+    z-index: 1000; /* Ensures the header stays on top */
+}
 
-.navbar li{
+/* Navbar list items */
+.navbar li {
     color: white;
     margin-right: 70px;
+    position: relative; /* Allows the pseudo-element for underline */
 }
 
-
-.navbar a:active{
-    color: var(--primary-color);
+/* Active link styling (Green Underline) */
+.navbar .active::after {
+    content: ""; /* Adds a decorative line */
+    position: absolute;
+    bottom: -5px; /* Places it slightly below the text */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Thickness of the underline */
+    background-color: green; /* Green color */
 }
 
-.navbar li:hover {
-    border-bottom: 2px solid var(--primary-color);
+/* Hover effect */
+.navbar li:hover::after {
+    content: ""; /* Adds underline on hover */
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color, cyan); /* Change hover underline color */
 }
 
-
-.dividenav{
+/* Div for navbar grid layout */
+.dividenav {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-  
+    grid-template-columns: repeat(2, 1fr); /* Two-column grid layout */
+    align-items: center; /* Center the logo and navbar vertically */
 }
+
+/* Optional: Smooth transitions */
+.navbar li, .navbar a {
+    transition: all 0.3s ease-in-out; /* Smooth transitions for hover and active states */
+}
+
 
 .section{
     display: grid; 
@@ -82,6 +113,7 @@ a{
 
 .image-container img{
     width: 360px;
+    height: 350px;
 }
 
 
@@ -143,7 +175,7 @@ color: var(--primary-color);
 }
 
 .download-cv button:hover{
-    background-color: white;
+    background-color: black;
     color: black;
 }
 
@@ -327,6 +359,8 @@ margin-top: 190px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
+
+
 .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
@@ -411,65 +445,33 @@ margin-left:205px;
 
 .projects{
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);
     margin-left: 200px;
 }
 
-.card {
-    width: 500px;
-    height: 500px;
-    padding: 20px;
-    border: 2px solid #ffffff;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #1e1e2f;
-    transition: transform 0.3s;
-}
-
-#card1 h2, #card2 h2{
-color: var(--primary-color);
-font-size: 22px;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-
-.buttonnext{
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3f51b5;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 550px;
-}
-
-.buttonnext img{
-width: 100px;
-height: auto;
-}
-
-.buttonback{
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3f51b5;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 450px;
-    position: absolute;
-}
-
-button:hover {
-    background-color: #303f9f;
-}
 
 .content {
-    display: none; /* Initially hide all content */
+    margin: 20px 0;
+    padding: 60px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.content p {
+color: white;
+font-weight: bold;
+}
+
+.buttonback, .buttonnext {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buttonback:hover, .buttonnext:hover {
+    background-color: #0056b3;
 }
 
 .active {
@@ -484,3 +486,276 @@ button:hover {
     width: 200px;
     height: 200px;
 }
+
+.certificates{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-left: 215px;
+    margin-top:80px;
+}
+
+.certificates .card{
+    width: 100px;
+    background-color: rgba(49, 49, 82, 0.956);
+    border: 4px solid var(--primary-color);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 280px;
+    height: 400px;
+    perspective: 1000px;
+    
+}
+
+.certificates .card img{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    margin-top: -40px;
+    margin-left: 95px;
+}
+
+.certificates h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.5em;
+}
+
+
+.certificates p {
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.certificates img{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-top: -40px;
+    margin-left: 95px;
+}
+
+.underlined-link {
+    text-decoration: underline; /* Ajoute un soulignement */
+    color: white; /* Change la couleur du texte */
+    font-weight: bold; /* Rend le texte plus visible */
+}
+.underlined-link:hover {
+    text-decoration: none; /* Enlève le soulignement au survol */
+}
+
+.project-card {
+    width: 300px;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+  .project-card h3{
+    color: white;
+  }
+  
+  .project-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .project-card-front {
+    padding: 20px;
+  }
+  
+  .project-card-front img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .project-card-front h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .project-card-front p {
+    font-size: 1em;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .redirect-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+  }
+  
+  /* GitHub Button Styling */
+  .github-btn {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .github-btn a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .github-btn i {
+    margin-right: 8px;
+  }
+  
+  /* Project Interfaces Button Styling */
+  .interfaces-btn {
+    background-color: var(--primary-color);
+    color: black;
+  }
+  
+  .interfaces-btn a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .interfaces-btn i {
+    margin-right: 8px;
+  }
+  
+  /* Hover Effects */
+  .github-btn:hover {
+    background-color: #6e5494; /* Purple color on hover */
+  }
+  
+  .interfaces-btn:hover {
+    background-color: var(--primary-color); /* Darker blue on hover */
+  }
+  
+  .material-icons {
+    font-size: 1.5em; /* Adjust icon size */
+  }
+
+
+  .contact-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    max-width: 1200px;
+  }
+  
+  
+  .form-container {
+    flex: 1;
+    padding-left: 30px;
+    border:2px solid var(--primary-color);
+    border-radius: 10px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  form label {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  form input[type="email"]:focus,
+  form textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+    outline: none;
+  }
+  
+  form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  form button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+  }
+  
+  form button:active {
+    background-color: #388e3c;
+    transform: translateY(2px);
+  }
+  
+  form textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-section {
+      flex-direction: column;
+      padding: 30px;
+    }
+  
+    
+    .form-container {
+      padding: 0;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    form input[type="email"],
+    form textarea {
+      max-width: 100%;
+    }
+  
+    form button {
+      width: 100%;
+    }
+  }
+  
